@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    padding: 20px;
+}
+
+header form{
+    width: fit-content;
+    height: fit-content;
+}
+
+header input{
+    background-color: transparent;
+    color: white;
+    border: none;
+    font: 20px "Times New Roman";
+}
+
+header ul{
+    width: fit-content;
+    gap: 20px;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav img {
+    height: 50px;
+    width: 50px;
+    filter: invert();
+}
+ul {
+    display: flex;
+    width: 200px;
+    align-items: center;
+    justify-content: space-around;
+}
+ul li {
+    display: inline-block;
+    list-style: none; 
+}
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+main .container{
+    background-color: white;
+    height: inherit;
+    min-height:calc(100vh - 164.8px);;
+}
+
+main .container ul{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    min-width:200px;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: black;
+}
+
+a:hover, header form:hover{
+   color: #aeaeae;
+   filter: invert(20%);
+}
+
+.content{
+    padding: 20px;
+    font-size: 25px;
+    width: 100%;
+    height:inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+}
+
+input{
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+footer{
+    background-color: black;
+    padding: 25px;
+}
+footer ul{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 50px;
+}
+footer ul img{
+    height: 20px;
+    width: 20px;
+    filter: invert();
+}
+p{
+    word-wrap: break-word;
+}
+
+.books{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.book{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 100%;   
+}
+
+.card{
+    display: flex;
+    flex-direction: column; 
+    padding: 10px;
+    border-radius: 5px;
+    gap: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: #ddd;
+    width: 100%;
+    height: 100%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+ .buttons form{
+    height: fit-content;
+    width: fit-content;
+ }
+
+.button{
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 20px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.button:hover{
+    filter:drop-shadow(0px 0px 2px rgb(0, 0, 0, 0.5));
+}
+
+.card:hover{
+    color: #000;
+    filter:drop-shadow(0px 0px 2px rgb(0, 0, 0, 0.5));
+}
+#delete{
+    background-color: rgb(180, 0, 0);
+    color: white;
+    border: 1px solid rgb(180, 0, 0);;
+
+}
+#edit{
+    background-color: rgb(0, 115, 0);
+    color: white;
+    border: 1px solid rgb(0, 115, 0);
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Books</title>
+</head>
+<body>
+    <header>
+        <nav>
+                <div class="container">
+                    <a href="/"><img src="/logo.png" alt="logo"></a>
+                <ul>
+                    <% if(auth == true) { %>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/addbook">Add a book</a></li>
+                        <li>
+                            <form method="post" action="/signout" >
+                                <input type="submit" value="Sign out"/>
+                            </form>
+                        </li>
+                    <% } else { %>
+                        <li><a href="/signin">Signin</a></li>
+                        <li><a href="/signup">Signup</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <ul>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="/books">Books</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <div class="content">
+                <% if(auth == true && endpoint == "add") { %>
+                    <form method="post" action="/addbook">
+                        <input type="text" id="title" name="title" placeholder="Title" required><br>
+                        <input type="text" id="author" name="author" placeholder="Author" required><br>
+                        <input type="date" id="published" name="published" placeholder="Published" required><br>
+                        <input type="number" id="pages" name="pages" placeholder="Pages" required><br>
+                        <input type="number" id="price" name="price" placeholder="Price" required><br>
+                        <input type="submit" value="Add"/>
+                    </form>
+                    <%= error?.unexpected %>
+                <% }else if (auth == true && (endpoint == "edit" && isBookOwner == true)) { %>
+                    <% books.forEach(book => { %>
+                    <form method="post" action="/editbook/<%= book._id %>">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" placeholder="Title" required value="<%= book.title %>"><br>
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" placeholder="Author" required value="<%= book.author %>"><br>
+                        <label for="published">Published</label>
+                        <input type="date" id="published" name="published" placeholder="Published" required value= "<%=`${ book.published.getFullYear()}-${( book.published.getMonth() + 1).toString().padStart(2, '0')}-${ book.published.getDate().toString().padStart(2, '0')}`%>"><br>
+                        <label for="pages">Pages</label>
+                        <input type="number" id="pages" name="pages" placeholder="Pages" required value="<%= book.pages %>"><br>
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" placeholder="Price" required value="<%= book.price %>"><br>
+                        <input type="submit" value="Edit"/>
+                    </form>
+                    <% }) %>
+                    <% error?.unexpected %>
+                    <% error?.get %>
+                <% } else { %>
+
+                <div class="books">
+                <% books.forEach(book => { %>
+                    <% if(endpoint == 'books') { %>
+                        <a class="card" href="/books/<%= book._id %>">
+                    <% } else {%>
+                        <div class="book">
+                    <% } %>
+                    <h3><%= book.title %></h3>
+                    <p>Author: <%= book.author %></p>
+                    <p>Published: <%=`${ book.published.getDate().toString().padStart(2, '0')}/${( book.published.getMonth() + 1).toString().padStart(2, '0')}/${ book.published.getFullYear()}`; %></p>
+                    <p>Page Number: <%= book.pages %></p>
+                    <p>Price: <%= book.price %>$</p>
+                    <% if(auth == true && endpoint == "book" && isBookOwner == true) { %>
+                        <div class="buttons">
+                            <form method="get" action="/editbook/<%= book._id %>">
+                                <input type="submit" value="Edit" class="button" id="edit"/>
+                            </form>
+                            <form method="post" action="/deletebook/<%= book._id %>" >
+                                <input type="submit" value="Delete" class="button" id="delete"/>
+                            </form>
+                        </div>
+                        <% } %>
+                    <% if(endpoint == 'books') { %>
+                        </a>
+                    <% } else {%>
+                        </div>
+                    <% } %>
+                <% }) %>
+                <%= error?.unexpected %>
+                <%= error?.get %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <ul>
+            <li><a href="https://www.instagram.com/"  target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/instagram-glyph-1.svg" alt="Instegram"></a></li>
+            <li><a href="https://twitter.com/?lang=en" target="_blank"><img src="https://about.twitter.com/content/dam/about-twitter/x/brand-toolkit/logo-black.png.twimg.1920.png" alt="X"></a></li>
+            <li><a href="https://www.linkedin.com" target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-1.svg" alt="linkedin"></a></li>
+            <li><a href="/https://www.facebook.com/" target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/facebook-icon-1.svg" alt="facebook"></a></li>
+        </ul>
+    </footer>
+</body>
+</html>
